@@ -5,44 +5,87 @@
 header{
   text-align: center;
 }
+body{
+  background-color: black;
+
+  font-family: 'Orbitron', sans-serif;
+}
+
 .container{
   width: 1200px;
-  height: 800px;
+  height: 750px;
   border: 1px solid black;
   display: flex;
-  justify-content:space-between;
+  justify-content:space-around;
   margin: auto;
+  background-color: black;
 }
 .buttons{
   width: 200px;
-  hegiht:100%;
+  height:100%;
   display:flex;
   flex-direction: column;
+  margin:10px;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid white;
+  text-align: center;
 }
 
 
 .startButton{
-  width: 100px;
+  width: 150px;
   height: 40px;
-  border: 1px solid black;
+  border: 1px solid white;
+  background-color: #42c2f4;
+  color:#f4a142;
+    margin:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
 
 }
 .endButton{
-  width: 100px;
+  width: 150px;
   height: 40px;
-  border: 1px solid black;
+  border: 1px solid white;
+  background-color: #42c2f4;
+    color:#f4a142;
+    margin:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      font-size: 26px;
 }
 .resetButton{
-  width: 100px;
+  width: 150px;
   height: 40px;
-  border: 1px solid black;
+  border: 1px solid white;
+  background-color: #42c2f4;
+    color:#f4a142;
+    margin:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      font-size: 26px;
 }
 .levelOfDifficulty{
-  width: 100px;
+  width: 150px;
   height: 45px;
-  border: 1px solid black;
+  border: 1px solid white;
+  background-color: #42c2f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+select{
+  width: 150px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 .maze{
   align-items: center;
@@ -51,9 +94,9 @@ header{
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
-  height: 100%;
+  height:100%;
   justify-content: center;
-  max-height: 800px;
+  max-height: 850px;
   max-width: 800px;
   border:  1px solid black;
 
@@ -91,10 +134,12 @@ header{
 }
 .timeScore{
   width: 200px;
-  height: 100%;
-  border:  1px solid black;
+  height:100%;
+  border:  1px solid white;
   display: flex;
   flex-wrap: wrap;
+  color:#f4a142;
+  font-size: 26px;
 
 
 
@@ -104,8 +149,19 @@ header{
   width: 50%;
   height: 50px;
   border:1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+}
 
+.ghost{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+
+  background-image: url('images/ghost1.png');
+  background-size: cover;
 }
 .cherry{
   flex-grow: 1;
@@ -113,9 +169,13 @@ header{
   width: 10%;
 
   background-image: url('images/cherry.png');
+  background-size: cover;
 }
 .score{
   width: 50%;
   height: 50px;
   border:1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -6,16 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const options = document.querySelector('.options')
   const maze = document.querySelector('.maze')
   const time = document.querySelector('.time')
+  let timeResult = 60
   const score = document.querySelector('.score')
   const width = 10
-  let foodCount=0
+  let foodCount = 0
+  let ghostCount = 0
   let keyVal = 0
+  let timerId =0
   const squares = []
+  let scoreResult = 0
   let playerIndex = 0
-  let playerIndexW = 0
-  let playerIndexY = 0
-  let playerIndexZ = 0
-  let playerIndexX = 0
+
   let direction = 'forward'
   let currentStep = 0
   const mazeArray = [1, 1, 1, 1, 0, 1, 1, 1, 1, 1,
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   ]
+
   function createMaze() {
     for (let i = 0; i < width * width; i++) {
       const square = document.createElement('DIV')
@@ -43,15 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function createFood() {
-    while(foodCount<5){
+    while (foodCount < 4) {
       for (let i = 0; i < 5; i++) {
-        let randCherry=parseInt(Math.floor(Math.random()*99))
+        const randCherry = parseInt(Math.floor(Math.random() * 99))
         console.log(foodCount)
 
         console.log(randCherry)
 
-        if(squares[randCherry].classList.contains('way') && !squares[randCherry].classList.contains('player')) {
+        if (squares[randCherry].classList.contains('way') && !squares[randCherry].classList.contains('player') && randCherry!==0) {
+
           squares[randCherry].classList.add('cherry')
+
           foodCount++
         }
 
@@ -59,11 +63,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
   }
+  function createGhosts() {
+    while (ghostCount < 4) {
+      for (let i = 0; i < 5; i++) {
+        const randGhost = parseInt(Math.floor(Math.random() * 99))
+        console.log(ghostCount)
 
+        console.log(ghostCount)
 
+        if (squares[randGhost].classList.contains('way') && !squares[randGhost].classList.contains('player') && !squares[randGhost].classList.contains('cherry')) {
+
+          squares[randGhost].classList.add('ghost')
+
+          ghostCount++
+        }
+
+      }
+    }
+
+  }
 
   createMaze()
   createFood()
+  createGhosts()
+
 
   squares[playerIndex].classList.add('player')
 
@@ -76,9 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
     player.classList.remove('player')
 
     // add the class of player to square the player should move to
-    if (mazeArray[playerIndex] === 1 && !squares[playerIndex].classList.contains('wall'))
+    if (mazeArray[playerIndex] === 1 && !squares[playerIndex].classList.contains('wall') || squares[playerIndex].classList.contains('cherry')) {
+
+      if (squares[playerIndex].classList.contains('cherry')) {
+        scoreResult++
+        score.innerText = scoreResult
+        foodCount--
+      }
+
+      squares[playerIndex].classList.remove('cherry')
       squares[playerIndex].classList.add('player')
-    else {
+
+    } else {
       if (keyVal === 37) {
         squares[playerIndex + 1].classList.add('player')
         playerIndex = playerIndex + 1
@@ -108,6 +140,44 @@ document.addEventListener('DOMContentLoaded', () => {
     squares[playerIndex].setAttribute('data-step', currentStep)
   }
 
+
+  function timer(){
+    clearInterval(timerId)
+    timerId = setInterval(() => {
+      timeResult--
+      time.innerText = timeResult
+      if(foodCount===0)
+        createFood()
+
+      if (timeResult === 0) {
+        clearInterval(timerId)
+
+        return
+      }
+    }, 1000)
+
+
+  }
+
+
+  startButton.addEventListener('click',timer)
+  if (timeResult === 0) {
+    clearInterval(timerId)
+    return
+  }
+  resetButton.addEventListener('click',()=>{
+    score.innerText=0
+    scoreResult=0
+    timeResult=60
+    time.innerText=60
+
+    createFood()
+    createGhosts()
+    clearInterval(timerId)
+    timer()
+
+
+  })
   document.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
       case 37:
@@ -126,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         keyVal = 38
         if (playerIndex - width >= 0) {
           playerIndex -= width
-          playerIndexW = playerIndex - width
+
           move()
         }
         break
@@ -136,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         keyVal = 39
         if (playerIndex % width < width - 1) {
           playerIndex++
-          playerIndexX = playerIndex + 1
+
           direction = 'forward'
           move()
         }
@@ -147,19 +217,13 @@ document.addEventListener('DOMContentLoaded', () => {
         keyVal = 40
         if (playerIndex + width < width * width) {
           playerIndex += width
-          playerIndexY = playerIndex + width
+
           move()
         }
         break
 
     }
   })
-
-
-
-
-
-
 
 
 })
