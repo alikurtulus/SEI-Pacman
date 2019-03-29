@@ -1,3 +1,121 @@
-body{
-  background-color: blue;
+*{
+  box-sizing: border-box;
+}
+
+header{
+  text-align: center;
+}
+.container{
+  width: 1200px;
+  height: 800px;
+  border: 1px solid black;
+  display: flex;
+  justify-content:space-between;
+  margin: auto;
+}
+.buttons{
+  width: 200px;
+  hegiht:100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+}
+
+
+.startButton{
+  width: 100px;
+  height: 40px;
+  border: 1px solid black;
+
+}
+.endButton{
+  width: 100px;
+  height: 40px;
+  border: 1px solid black;
+}
+.resetButton{
+  width: 100px;
+  height: 40px;
+  border: 1px solid black;
+}
+.levelOfDifficulty{
+  width: 100px;
+  height: 45px;
+  border: 1px solid black;
+}
+.maze{
+  align-items: center;
+
+
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  max-height: 800px;
+  max-width: 800px;
+  border:  1px solid black;
+
+}
+
+.maze div{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+
+
+}
+.wall{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+
+  background-image: url('images/wall.png');
+}
+.way{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  border:  1px solid black;
+  background-color: black;
+}
+.player{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  background-image: url('images/pacman.png');
+  background-size: cover;
+  background-position-x: 0;
+  background-position-y: 0;
+}
+.timeScore{
+  width: 200px;
+  height: 100%;
+  border:  1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+
+
+
+
+}
+.time{
+  width: 50%;
+  height: 50px;
+  border:1px solid black;
+
+
+}
+.cherry{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+
+  background-image: url('images/cherry.png');
+}
+.score{
+  width: 50%;
+  height: 50px;
+  border:1px solid black;
 }
