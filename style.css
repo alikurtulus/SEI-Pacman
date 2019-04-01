@@ -109,6 +109,29 @@ select{
 
 
 }
+.maze div.player[data-direction="forward"] {
+  transform: scaleX(1);
+}
+.player{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  background-image: url('images/pacman.png');
+  background-size: cover;
+  background-position-x: 0;
+  background-position-y: 0;
+}
+.maze div.player[data-direction="backward"] {
+  transform: scaleX(-1);
+}
+.maze div.player[data-direction="downward"] {
+  transform: scaleY(-1);
+
+}
+.maze div.player[data-direction="upward"] {
+  transform: scaleY(1);
+
+}
 .wall{
   flex-grow: 1;
   height:10%;
@@ -123,15 +146,7 @@ select{
   border:  1px solid black;
   background-color: black;
 }
-.player{
-  flex-grow: 1;
-  height:10%;
-  width: 10%;
-  background-image: url('images/pacman.png');
-  background-size: cover;
-  background-position-x: 0;
-  background-position-y: 0;
-}
+
 .timeScore{
   width: 200px;
   height:100%;
@@ -163,13 +178,22 @@ select{
   background-image: url('images/ghost1.png');
   background-size: cover;
 }
-.cherry{
+.ghost2{
   flex-grow: 1;
   height:10%;
   width: 10%;
 
-  background-image: url('images/cherry.png');
+  background-image: url('images/ghost2.png');
   background-size: cover;
+}
+.cherry{
+  flex-grow: 1;
+  height:2%;
+  width: 2%;
+
+  background-image: url('images/cherry.png');
+  background-size:contain;
+
 }
 .score{
   width: 50%;
