@@ -96,16 +96,17 @@ select{
   flex-wrap: wrap;
   height:100%;
   justify-content: center;
-  max-height: 850px;
+  max-height: 800px;
   max-width: 800px;
-  border:  1px solid black;
+  border: 1px solid red;
 
 }
 
 .maze div{
   flex-grow: 1;
-  height:10%;
-  width: 10%;
+  width: calc(100% / 20);
+   height: calc(100% / 20);
+
 
 
 }
@@ -184,6 +185,14 @@ select{
   width: 10%;
 
   background-image: url('images/ghost2.png');
+  background-size: cover;
+}
+.ghost3{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+
+  background-image: url('images/ghost3.png');
   background-size: cover;
 }
 .cherry{

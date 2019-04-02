@@ -8,31 +8,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const time = document.querySelector('.time')
   let timeResult = 60
   const score = document.querySelector('.score')
-  const width = 10
+  const width = 20
   let foodCount = 0
   let ghostCount = 0
+  let ghostCounter=0
   let keyVal = 0
   let timerId = 0
   const squares = []
   let scoreResult = 0
-  let playerIndex = 0
+  let playerIndex = 21
   let playerMove = 1
   const ghostPositions = []
   let direction = 'forward'
   let currentStep = 0
-  let ghostStep =0
-  let ghostStep2 =0
+  let ghostStep = 0
+  let ghostStep2 = 0
+  let ghostStep3 = 0
   let ghostI = 0
-  const mazeArray = [1, 1, 1, 1, 0, 1, 1, 1, 1, 1,
-    1, 0, 0, 1, 0, 1, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    0, 0, 1, 0, 0, 1, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 1, 0, 0, 1, 0, 0, 0, 1,
-    1, 0, 1, 0, 0, 1, 1, 0, 0, 1,
-    1, 1, 1, 1, 1, 0, 1, 0, 0, 1,
-    1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+  const mazeArray = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 3, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 3, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+    1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 3, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 3, 1,
+    1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   ]
 
   function createMaze() {
@@ -41,83 +53,134 @@ document.addEventListener('DOMContentLoaded', () => {
       squares.push(square)
       maze.appendChild(square)
 
-      if (mazeArray[i] === 1) square.classList.add('way')
+      if (mazeArray[i] === 0) square.classList.add('way')
 
-      else square.classList.add('wall')
+      else if (mazeArray[i] === 1) square.classList.add('wall')
+      else if (mazeArray[i] === 3) square.classList.add('cherry')
 
     }
   }
 
-  function createFood() {
-    while (foodCount < 4) {
-      for (let i = 0; i < 5; i++) {
-        const randCherry = parseInt(Math.floor(Math.random() * 99))
-        console.log(foodCount)
+  /*  function createFood() {
+      while (foodCount < 4) {
+        for (let i = 0; i < 5; i++) {
+          const randCherry = parseInt(Math.floor(Math.random() * 99))
+          console.log(foodCount)
 
-        console.log(randCherry)
+          console.log(randCherry)
 
-        if (squares[randCherry].classList.contains('way') && !squares[randCherry].classList.contains('player') && randCherry !== 0) {
+          if (squares[randCherry].classList.contains('way') && !squares[randCherry].classList.contains('player') && randCherry !== 0) {
 
-          squares[randCherry].classList.add('cherry')
+            squares[randCherry].classList.add('cherry')
 
-          foodCount++
+            foodCount++
+          }
+
         }
-
       }
-    }
 
-  }
+    }
+    */
 
   function createGhosts() {
-    while (ghostCount < 2) {
-      for (let i = 0; i < 1; i++) {
-        const randGhost = parseInt(Math.floor(Math.random() * 99))
-        console.log(ghostCount)
+    while(ghostCounter<3){
+      const randGhost = parseInt(Math.floor(Math.random() * 98))
+      if (squares[randGhost].classList.contains('way') && !squares[randGhost].classList.contains('player') && !squares[randGhost].classList.contains('cherry') && randGhost !== 21) {
 
-        console.log(ghostCount)
-
-        if (squares[randGhost].classList.contains('way') && !squares[randGhost].classList.contains('player') && !squares[randGhost].classList.contains('cherry') && randGhost !== 0) {
-
-          squares[randGhost].classList.add('ghost')
-
-          ghostPositions.push(randGhost)
-
-          ghostCount++
-        }
-
+        ghostPositions.push(randGhost)
+        ghostCounter++
       }
     }
+
+
+
+    console.log(ghostPositions)
+
+    while (ghostCount < 3) {
+
+      if (ghostCount === 0) squares[ghostPositions[ghostCount]].classList.add('ghost')
+      else if (ghostCount === 1) squares[ghostPositions[ghostCount]].classList.add('ghost2')
+      else if (ghostCount === 2) squares[ghostPositions[ghostCount]].classList.add('ghost3')
+
+      ghostCount++
+
+
+    }
+
     ghostStep = ghostPositions[0]
     ghostStep2 = ghostPositions[1]
+    ghostStep3 = ghostPositions[2]
 
   }
-
   createMaze()
-  createFood()
+  //  createFood()
   createGhosts()
 
   function moveGhosts() {
 
   }
+
   const timerGhostId = setInterval(() => {
 
     const availableMoves = [1, -1, width, -width]
 
-    let val = availableMoves[Math.floor(Math.random() * availableMoves.length)]
-    let val2 = availableMoves[Math.floor(Math.random() * availableMoves.length)]
+    //let val = availableMoves[Math.floor(Math.random() * availableMoves.length)]
+    //let val2 = availableMoves[Math.floor(Math.random() * availableMoves.length)]
 
-    while (squares[ghostStep + val].classList.contains('wall') ||  squares[ghostStep + val].classList.contains('cherry')) {
-      val = availableMoves[Math.floor(Math.random() * availableMoves.length)]
-    }
-    while (squares[ghostStep2 + val2].classList.contains('wall') ||  squares[ghostStep2 + val2].classList.contains('cherry')) {
-      val2= availableMoves[Math.floor(Math.random() * availableMoves.length)]
-    }
+    const realMoves=availableMoves.filter(availableMove =>{
+      return !squares[ghostStep+availableMove].classList.contains('wall')
+    })
+    const distances=realMoves.map(realMove =>{
+      return Math.abs(ghostStep+realMove-playerIndex)
+    })
+
+
+    const realMoves2=availableMoves.filter(availableMove =>{
+      return !squares[ghostStep2+availableMove].classList.contains('wall')
+    })
+    const distances2=realMoves2.map(realMove2 =>{
+      return Math.abs(ghostStep2+realMove2-playerIndex)
+    })
+
+
+    const realMoves3=availableMoves.filter(availableMove =>{
+      return !squares[ghostStep3+availableMove].classList.contains('wall')
+    })
+    const distances3=realMoves3.map(realMove3 =>{
+      return Math.abs(ghostStep3+realMove3-playerIndex)
+    })
+
+
+
 
     squares[ghostStep].classList.remove('ghost')
-    squares[ghostStep2].classList.remove('ghost')
+    squares[ghostStep2].classList.remove('ghost2')
+    squares[ghostStep3].classList.remove('ghost3')
 
+
+
+
+
+
+    console.log(distances)
+    console.log(distances2)
+    console.log(distances3)
+    ghostStep=Math.min(...distances)+playerIndex
+    ghostStep2=Math.min(...distances2)+playerIndex
+    ghostStep3=Math.min(...distances3)+playerIndex
     console.log(ghostStep)
-    if (ghostStep < 99) {
+    console.log(ghostStep2)
+    console.log(ghostStep3)
+    squares[ghostStep].classList.add('ghost')
+    squares[ghostStep2].classList.add('ghost2')
+    squares[ghostStep3].classList.add('ghost3')
+
+
+
+
+
+
+    /*  if (ghostStep < 99) {
       if (val === -1) {
         if (squares[ghostStep - 1].classList.contains('way')) {
 
@@ -156,52 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
       ghostStep -= 1
       squares[ghostStep].classList.add('ghost')
     }
-    if (ghostStep2 < 99) {
-      if (val2 === -1) {
-        if (squares[ghostStep2 - 1].classList.contains('way')) {
-
-
-          ghostStep2 -= 1
-
-          console.log(ghostStep2)
-
-          squares[ghostStep2].classList.add('ghost')
-        }
-      } else if (val2=== width) {
-        if (squares[ghostStep2 + width].classList.contains('way')) {
-          console.log('hi down')
-          ghostStep2 +=width
-          squares[ghostStep2].classList.add('ghost')
-
-
-        }
-      } else if (val2 === 1) {
-        if (squares[ghostStep2 + 1].classList.contains('way')) {
-          console.log('hi forward')
-          ghostStep2 += 1
-          squares[ghostStep2].classList.add('ghost')
-
-
-        }
-      } else if (val2 === -width) {
-        if (squares[ghostStep2 - width].classList.contains('way')) {
-          console.log('hi up')
-          ghostStep2 -= width
-          squares[ghostStep2].classList.add('ghost')
-
-        }
-      }
-    } else {
-      ghostStep2 -= 1
-      squares[ghostStep2].classList.add('ghost')
-    }
+    */
 
 
 
 
 
-
-  }, 1000)
+  }, 800)
 
 
 
@@ -216,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     player.classList.remove('player')
 
     // add the class of player to square the player should move to
-    if (mazeArray[playerIndex] === 1 && !squares[playerIndex].classList.contains('wall') || squares[playerIndex].classList.contains('cherry')) {
+    if (mazeArray[playerIndex] === 0 && !squares[playerIndex].classList.contains('wall') || squares[playerIndex].classList.contains('cherry')) {
 
       if (squares[playerIndex].classList.contains('cherry')) {
         scoreResult++
@@ -229,24 +253,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } else {
       if (keyVal === 37) {
-        squares[playerIndex + 1].classList.add('player')
         playerIndex = playerIndex + 1
-        return
       } else if (keyVal === 38) {
-        squares[playerIndex + width].classList.add('player')
         playerIndex = playerIndex + width
-        return
       } else if (keyVal === 39) {
-        squares[playerIndex - 1].classList.add('player')
         playerIndex = playerIndex - 1
-        return
       } else if (keyVal === 40) {
-        squares[playerIndex - width].classList.add('player')
         playerIndex = playerIndex - width
-        return
-
       }
 
+      squares[playerIndex].classList.add('player')
 
 
     }
@@ -264,36 +280,31 @@ document.addEventListener('DOMContentLoaded', () => {
       timeResult--
       time.innerText = timeResult
       if (foodCount === 0)
-        createFood()
+        //  createFood()
 
-      if (timeResult === 0) {
-        clearInterval(timerId)
+        if (timeResult === 0) {
+          clearInterval(timerId)
 
-        return
-      }
-    }, 1000)
+          return
+        }
+    }, 900)
 
 
   }
 
 
   startButton.addEventListener('click', timer)
-  if (timeResult === 0) {
-    clearInterval(timerId)
-    return
-  }
+
   resetButton.addEventListener('click', () => {
     score.innerText = 0
     scoreResult = 0
     timeResult = 60
     time.innerText = 60
 
-    createFood()
+    //   createFood()
     createGhosts()
     clearInterval(timerId)
     timer()
-
-
   })
   document.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
