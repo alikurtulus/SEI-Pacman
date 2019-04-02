@@ -117,7 +117,7 @@ select{
   flex-grow: 1;
   height:10%;
   width: 10%;
-  background-image: url('images/pacman.png');
+  background-image: url('images/pacman2.png');
   background-size: cover;
   background-position-x: 0;
   background-position-y: 0;
@@ -148,6 +148,7 @@ select{
   background-color: black;
 }
 
+
 .timeScore{
   width: 200px;
   height:100%;
@@ -170,6 +171,13 @@ select{
   justify-content: center;
   align-items: center;
 
+}
+.resultGame{
+  width: 100%;
+  height: 60px;
+  font-size: 26px;
+  color: red;
+  text-align: center;
 }
 
 .ghost{
@@ -194,6 +202,14 @@ select{
   width: 10%;
 
   background-image: url('images/ghost3.png');
+  background-size: cover;
+}
+.ghostSick{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+
+  background-image: url('images/ghostSick.png');
   background-size: cover;
 }
 .cherry{
