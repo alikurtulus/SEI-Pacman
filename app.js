@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let timeResult = 60
   const score = document.querySelector('.score')
   const width = 20
-  let foodCount = 0
+
   let ghostCount = 0
-  let ghostCounter=0
+  let ghostCounter = 0
   let keyVal = 0
   let timerId = 0
   const squares = []
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let ghostStep = 0
   let ghostStep2 = 0
   let ghostStep3 = 0
-  let ghostI = 0
+
   const mazeArray = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
     1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1,
@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     */
 
   function createGhosts() {
-    while(ghostCounter<3){
-      const randGhost = parseInt(Math.floor(Math.random() * 98))
+    while (ghostCounter < 3) {
+      const randGhost = parseInt(Math.floor(Math.random() * 399))
       if (squares[randGhost].classList.contains('way') && !squares[randGhost].classList.contains('player') && !squares[randGhost].classList.contains('cherry') && randGhost !== 21) {
 
         ghostPositions.push(randGhost)
@@ -122,34 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const timerGhostId = setInterval(() => {
 
-    const availableMoves = [1, -1, width, -width]
-
-    //let val = availableMoves[Math.floor(Math.random() * availableMoves.length)]
-    //let val2 = availableMoves[Math.floor(Math.random() * availableMoves.length)]
-
-    const realMoves=availableMoves.filter(availableMove =>{
-      return !squares[ghostStep+availableMove].classList.contains('wall')
-    })
-    const distances=realMoves.map(realMove =>{
-      return Math.abs(ghostStep+realMove-playerIndex)
-    })
-
-
-    const realMoves2=availableMoves.filter(availableMove =>{
-      return !squares[ghostStep2+availableMove].classList.contains('wall')
-    })
-    const distances2=realMoves2.map(realMove2 =>{
-      return Math.abs(ghostStep2+realMove2-playerIndex)
-    })
-
-
-    const realMoves3=availableMoves.filter(availableMove =>{
-      return !squares[ghostStep3+availableMove].classList.contains('wall')
-    })
-    const distances3=realMoves3.map(realMove3 =>{
-      return Math.abs(ghostStep3+realMove3-playerIndex)
-    })
-
+    const availableMoves = [-1,-width,1,width]
 
 
 
@@ -157,75 +130,52 @@ document.addEventListener('DOMContentLoaded', () => {
     squares[ghostStep2].classList.remove('ghost2')
     squares[ghostStep3].classList.remove('ghost3')
 
+    let realMoves = availableMoves.filter(availableMove => {
+      return !squares[ghostStep + availableMove].classList.contains('wall')
+    })
+    console.log('Real moves for ghost '+ realMoves)
+
+    let distances = realMoves.map(realMove => {
+      return Math.abs(ghostStep + realMove - playerIndex)
+    })
+    console.log('real distance '+distances)
+
+    let realMoves2 = availableMoves.filter(availableMove2 => {
+      return !squares[ghostStep2 + availableMove2].classList.contains('wall')
+    })
+    console.log('Real moves for ghost2 '+realMoves2)
+    let distances2 = realMoves2.map(realMove2 => {
+      return Math.abs(ghostStep2 + realMove2 - playerIndex)
+    })
+    console.log('real distance2 '+distances2)
 
 
+    let realMoves3 = availableMoves.filter(availableMove3 => {
+      return !squares[ghostStep3 + availableMove3].classList.contains('wall')
+    })
+    console.log('Real moves for ghost3 '+realMoves3)
+    let distances3 = realMoves3.map(realMove3 => {
+      return Math.abs(ghostStep3 + realMove3 - playerIndex)
+    })
+    console.log('real distance3 '+distances3)
 
 
-
-    console.log(distances)
-    console.log(distances2)
-    console.log(distances3)
-    ghostStep=Math.min(...distances)+playerIndex
-    ghostStep2=Math.min(...distances2)+playerIndex
-    ghostStep3=Math.min(...distances3)+playerIndex
+    ghostStep += realMoves[distances.indexOf(Math.min(...distances))]
+    ghostStep2 += realMoves2[distances2.indexOf(Math.min(...distances2))]
+    ghostStep3 += realMoves3[distances3.indexOf(Math.min(...distances3))]
     console.log(ghostStep)
     console.log(ghostStep2)
     console.log(ghostStep3)
-    squares[ghostStep].classList.add('ghost')
-    squares[ghostStep2].classList.add('ghost2')
-    squares[ghostStep3].classList.add('ghost3')
-
-
-
-
-
-
-    /*  if (ghostStep < 99) {
-      if (val === -1) {
-        if (squares[ghostStep - 1].classList.contains('way')) {
-
-
-          ghostStep -= 1
-
-          console.log(ghostStep)
-
-          squares[ghostStep].classList.add('ghost')
-        }
-      } else if (val === width) {
-        if (squares[ghostStep + width].classList.contains('way')) {
-          console.log('hi down')
-          ghostStep +=width
-          squares[ghostStep].classList.add('ghost')
-
-
-        }
-      } else if (val === 1) {
-        if (squares[ghostStep + 1].classList.contains('way')) {
-          console.log('hi forward')
-          ghostStep += 1
-          squares[ghostStep].classList.add('ghost')
-
-
-        }
-      } else if (val === -width) {
-        if (squares[ghostStep - width].classList.contains('way')) {
-          console.log('hi up')
-          ghostStep -= width
-          squares[ghostStep].classList.add('ghost')
-
-        }
-      }
-    } else {
-      ghostStep -= 1
+    if( !squares[ghostStep].classList.contains('wall'))
       squares[ghostStep].classList.add('ghost')
-    }
-    */
+    if(!squares[ghostStep2].classList.contains('wall'))
+      squares[ghostStep2].classList.add('ghost2')
+    if(!squares[ghostStep3].classList.contains('wall'))
+      squares[ghostStep3].classList.add('ghost3')
 
 
 
-
-
-  }, 800)
+  }, 1000)
 
 
 
@@ -245,7 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (squares[playerIndex].classList.contains('cherry')) {
         scoreResult++
         score.innerText = scoreResult
-        foodCount--
+        mazeArray[playerIndex]=0
+
       }
 
       squares[playerIndex].classList.remove('cherry')
@@ -279,15 +230,15 @@ document.addEventListener('DOMContentLoaded', () => {
     timerId = setInterval(() => {
       timeResult--
       time.innerText = timeResult
-      if (foodCount === 0)
-        //  createFood()
 
-        if (timeResult === 0) {
-          clearInterval(timerId)
+      //  createFood()
 
-          return
-        }
-    }, 900)
+      if (timeResult === 0) {
+        clearInterval(timerId)
+
+        return
+      }
+    }, 1000)
 
 
   }

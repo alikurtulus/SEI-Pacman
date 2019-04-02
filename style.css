@@ -98,7 +98,7 @@ select{
   justify-content: center;
   max-height: 800px;
   max-width: 800px;
-  border: 1px solid red;
+
 
 }
 
@@ -156,6 +156,7 @@ select{
   flex-wrap: wrap;
   color:#f4a142;
   font-size: 26px;
+  margin:10px;
 
 
 
