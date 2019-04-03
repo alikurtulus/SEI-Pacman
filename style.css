@@ -102,26 +102,60 @@ select{
 .maze div.player[data-direction="forward"] {
   transform: scaleX(1);
 }
+.maze div.player[data-direction="upward"] {
+  transform: rotate(-90deg);
+}
+.maze div.player[data-direction="downward"] {
+  transform: rotate(90deg);
+}
 .player{
   flex-grow: 1;
   height:10%;
   width: 10%;
-  background-image: url('images/pacman2.png');
-  background-size: cover;
-  background-position-x: 0;
-  background-position-y: 0;
+  background-image: url('images/pacman-spritesheet.png');
+  /* background-size: contain; */
+  /* background-position-x: 0;
+  background-position-y: 0; */
+  background-repeat: no-repeat;
+  background-size: 194px;
 }
 .maze div.player[data-direction="backward"] {
   transform: scaleX(-1);
 }
-.maze div.player[data-direction="downward"] {
-  transform: scaleY(-1);
 
+.maze div.player[data-step="0"] {
+  background-position-x: 2px;
+  background-position-y: 0;
 }
-.maze div.player[data-direction="upward"] {
-  transform: scaleY(1);
 
+.maze div.player[data-step="1"] {
+  background-position-x: -40px;
+  background-position-y: 0;
 }
+
+.maze div.player[data-step="2"] {
+  background-position-x: -80px;
+  background-position-y: 0;
+}
+
+.maze div.player[data-step="3"] {
+  background-position-x:-120px;
+  background-position-y: 0;
+}
+
+.maze div.player[data-step="4"] {
+  background-position-x: -160px;
+  background-position-y: 0;
+}
+
+
+
+
+
+
+
+
+
 .wall{
   flex-grow: 1;
   height:10%;
