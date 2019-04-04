@@ -263,6 +263,21 @@ select{
   background-image: url('images/ghostSick.png');
   background-size: cover;
 }
+.ghostSick2{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  background-image: url('images/ghostSick.png');
+  background-size: cover;
+}
+.ghostSick3{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  background-image: url('images/ghostSick.png');
+  background-size: cover;
+}
+
 .deathpacman{
   height:10%;
   width: 10%;
