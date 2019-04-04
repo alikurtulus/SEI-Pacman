@@ -202,34 +202,6 @@ select{
   text-align: center;
 }
 
-.ghost{
-  flex-grow: 1;
-  height:10%;
-  width: 10%;
-  background-image: url('images/ghost1.png');
-  background-size: cover;
-}
-.ghost2{
-  flex-grow: 1;
-  height:10%;
-  width: 10%;
-  background-image: url('images/ghost2.png');
-  background-size: cover;
-}
-.ghost3{
-  flex-grow: 1;
-  height:10%;
-  width: 10%;
-  background-image: url('images/ghost3.png');
-  background-size: cover;
-}
-.ghostSick{
-  flex-grow: 1;
-  height:10%;
-  width: 10%;
-  background-image: url('images/ghostSick.png');
-  background-size: cover;
-}
 .cherry{
   flex-grow: 1;
   height:2%;
@@ -266,4 +238,33 @@ select{
 
 
 
+}
+
+.ghost{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  background-image: url('images/ghost1.png');
+  background-size: cover;
+}
+.ghost2{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  background-image: url('images/ghost2.png');
+  background-size: cover;
+}
+.ghost3{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  background-image: url('images/ghost3.png');
+  background-size: cover;
+}
+.ghostSick{
+  flex-grow: 1;
+  height:10%;
+  width: 10%;
+  background-image: url('images/ghostSick.png');
+  background-size: cover;
 }

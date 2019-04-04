@@ -41,12 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let ghostAwayCount = 8
   let timerGhostAway = 0
   let timerGhostId = 0
-  let isCherry1 = false
-  let isCherry2 = false
-  let isCherry3 = false
-  let isPineApple = false
-  let isPineApple2 = false
-  let isPineApple3 = false
+
   let isGamePlay = true
   let isGhostSick = false
   let countIntroMusic = 10
@@ -94,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(introMusicTimer)
     }
   }
-  const introMusicTimer = setInterval(playIntroMusic, 1000)
+  // const introMusicTimer = setInterval(playIntroMusic, 1000)
 
   function createGhosts() {
     while (ghostCounter < 3) {
@@ -136,27 +131,27 @@ document.addEventListener('DOMContentLoaded', () => {
     realMoves = availableMoves.filter(availableMove => {
       return (!squares[ghostStep + availableMove].classList.contains('wall') && !squares[ghostStep + availableMove].classList.contains('ghost2') && !squares[ghostStep + availableMove].classList.contains('ghost3') && !squares[ghostStep + availableMove].classList.contains('ghostSick'))
     })
-    console.log('Real moves for ghost ' + realMoves)
+    //  console.log('Real moves for ghost ' + realMoves)
     distances = realMoves.map(realMove => {
       return Math.abs(ghostStep + realMove - playerIndex)
     })
-    console.log('real distance ' + distances)
+    //  console.log('real distance ' + distances)
     realMoves2 = availableMoves.filter(availableMove2 => {
       return (!squares[ghostStep2 + availableMove2].classList.contains('wall') && !squares[ghostStep2 + availableMove2].classList.contains('ghost1') && !squares[ghostStep2 + availableMove2].classList.contains('ghost3') && !squares[ghostStep2 + availableMove2].classList.contains('ghostSick'))
     })
-    console.log('Real moves for ghost2 ' + realMoves2)
+    //  console.log('Real moves for ghost2 ' + realMoves2)
     distances2 = realMoves2.map(realMove2 => {
       return Math.abs(ghostStep2 + realMove2 - playerIndex)
     })
-    console.log('real distance2 ' + distances2)
+    //  console.log('real distance2 ' + distances2)
     realMoves3 = availableMoves.filter(availableMove3 => {
       return (!squares[ghostStep3 + availableMove3].classList.contains('wall') && !squares[ghostStep3 + availableMove3].classList.contains('ghost1') && !squares[ghostStep3 + availableMove3].classList.contains('ghost2') && !squares[ghostStep3 + availableMove3].classList.contains('ghostSick'))
     })
-    console.log('Real moves for ghost3 ' + realMoves3)
+    //    console.log('Real moves for ghost3 ' + realMoves3)
     distances3 = realMoves3.map(realMove3 => {
       return Math.abs(ghostStep3 + realMove3 - playerIndex)
     })
-    console.log('real distance3 ' + distances3)
+    //  console.log('real distance3 ' + distances3)
 
   }
 
@@ -190,73 +185,50 @@ document.addEventListener('DOMContentLoaded', () => {
     squares[ghostStep3].classList.add('cherry')
   }
 
-  function checkCherryAndPineAppleForGhost() {
-    if (isCherry1) {
-      squares[ghostStep].classList.add('cherry')
-      isCherry1 = false
-    } else if (isPineApple) {
-      squares[ghostStep].classList.add('pineapple')
-      isPineApple = false
-    }
-    if (isCherry2) {
-      squares[ghostStep2].classList.add('cherry')
-      isCherry2 = false
 
-    } else if (isPineApple2) {
-      squares[ghostStep2].classList.add('pineapple')
-      isPineApple2 = false
-
-    }
-    if (isCherry3) {
-      squares[ghostStep3].classList.add('cherry')
-      isCherry3 = false
-    } else if (isPineApple3) {
-      squares[ghostStep3].classList.add('pineapple')
-      isPineApple3 = false
-    }
-  }
 
   function moveGhosts() {
+    console.log('movin')
     removeGhosts()
-    checkCherryAndPineAppleForGhost()
+    // checkCherryAndPineAppleForGhost()
     calculateDistanceAndPositionForGhost()
     ghostStep += realMoves[distances.indexOf(Math.min(...distances))]
     ghostStep2 += realMoves2[distances2.indexOf(Math.min(...distances2))]
     ghostStep3 += realMoves3[distances3.indexOf(Math.min(...distances3))]
-    console.log(ghostStep)
-    console.log(ghostStep2)
-    console.log(ghostStep3)
+    //  console.log(ghostStep)
+    //  console.log(ghostStep2)
+    //  console.log(ghostStep3)
 
-    if (!squares[ghostStep].classList.contains('wall')) {
-      if (squares[ghostStep].classList.contains('cherry')) {
-        isCherry1 = true
-        squares[ghostStep].classList.remove('cherry')
-
-      } else if (squares[ghostStep].classList.contains('pineapple')) {
-        squares[ghostStep].classList.remove('pineapple')
-        isPineApple = true
-      }
-    }
-
-    if (!squares[ghostStep2].classList.contains('wall')) {
-      if (squares[ghostStep2].classList.contains('cherry')) {
-        squares[ghostStep2].classList.remove('cherry')
-        isCherry2 = true
-      } else if (squares[ghostStep2].classList.contains('pineapple')) {
-        squares[ghostStep2].classList.remove('pineapple')
-        isPineApple2 = true
-      }
-    }
-    if (!squares[ghostStep3].classList.contains('wall')) {
-      if (squares[ghostStep3].classList.contains('cherry')) {
-        squares[ghostStep3].classList.remove('cherry')
-        isCherry3 = true
-
-      } else if (squares[ghostStep3].classList.contains('pineapple')) {
-        squares[ghostStep3].classList.remove('pineapple')
-        isPineApple3 = true
-      }
-    }
+    // if (!squares[ghostStep].classList.contains('wall')) {
+    //   if (squares[ghostStep].classList.contains('cherry')) {
+    //     isCherry1 = true
+    //     squares[ghostStep].classList.remove('cherry')
+    //
+    //   } else if (squares[ghostStep].classList.contains('pineapple')) {
+    //     squares[ghostStep].classList.remove('pineapple')
+    //     isPineApple = true
+    //   }
+    // }
+    //
+    // if (!squares[ghostStep2].classList.contains('wall')) {
+    //   if (squares[ghostStep2].classList.contains('cherry')) {
+    //     squares[ghostStep2].classList.remove('cherry')
+    //     isCherry2 = true
+    //   } else if (squares[ghostStep2].classList.contains('pineapple')) {
+    //     squares[ghostStep2].classList.remove('pineapple')
+    //     isPineApple2 = true
+    //   }
+    // }
+    // if (!squares[ghostStep3].classList.contains('wall')) {
+    //   if (squares[ghostStep3].classList.contains('cherry')) {
+    //     squares[ghostStep3].classList.remove('cherry')
+    //     isCherry3 = true
+    //
+    //   } else if (squares[ghostStep3].classList.contains('pineapple')) {
+    //     squares[ghostStep3].classList.remove('pineapple')
+    //     isPineApple3 = true
+    //   }
+    // }
     addGhosts()
 
     if (squares[ghostStep].classList.contains('player') || squares[ghostStep2].classList.contains('player') || squares[ghostStep3].classList.contains('player')) {
@@ -277,17 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
     squares[ghostStep3].classList.remove('ghostSick')
   }
 
-  function removePineApples() {
-    squares[ghostStep].classList.remove('pineapple')
-    squares[ghostStep2].classList.remove('pineapple')
-    squares[ghostStep3].classList.remove('pineapple')
-  }
+
 
   function ghostAway() {
     if (isGhostSick && isGamePlay) {
       removeGhosts()
       removeGhostSick()
-      checkCherryAndPineAppleForGhost()
+
       calculateDistanceAndPositionForGhost()
       ghostStep += realMoves[distances.indexOf(Math.max(...distances))]
       ghostStep2 += realMoves2[distances2.indexOf(Math.max(...distances2))]
@@ -296,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(ghostStep2)
       console.log(ghostStep3)
       if (!squares[ghostStep].classList.contains('wall') && !squares[ghostStep2].classList.contains('wall') && !squares[ghostStep3].classList.contains('wall')) {
-        removePineApples()
+
 
         addGhostSicks()
       }
@@ -334,7 +302,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-  
+
+  function updateScore() {
+    if (squares[playerIndex].classList.contains('cherry')) {
+      scoreResult += 5
+      squares[playerIndex].classList.remove('cherry')
+      eatCherryWav.play()
+    } else if (squares[playerIndex].classList.contains('pineapple')) {
+      scoreResult += 1
+      eatPineappleWav.play()
+      squares[playerIndex].classList.remove('pineapple')
+    }
+    score.innerText = scoreResult
+  }
+
+  const timerCheckScore = setInterval(updateScore, 60)
+
   function move() {
     // update the current step (should count from 0 - 4 s, then start again)
     currentStep = currentStep === 4 ? 0 : currentStep + 1
@@ -347,32 +330,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mazeArray[playerIndex] === 0 && !squares[playerIndex].classList.contains('wall') || squares[playerIndex].classList.contains('cherry') || squares[playerIndex].classList.contains('pineapple') || squares[playerIndex].classList.contains('ghostSick')) {
 
       if (squares[playerIndex].classList.contains('cherry')) {
-        scoreResult += 5
-        squares[playerIndex].classList.remove('cherry')
-        eatCherryWav.play()
-        timeResult +=5
+        //  scoreResult += 5
+        //  squares[playerIndex].classList.remove('cherry')
+        //  eatCherryWav.play()
+        timeResult += 5
         timerGhostAway = setInterval(ghostAway, 1000)
         clearInterval(timerGhostId)
         isGhostSick = true
 
       } else if (squares[playerIndex].classList.contains('pineapple')) {
-        scoreResult += 1
-        eatPineappleWav.play()
-        squares[playerIndex].classList.remove('pineapple')
+        //  scoreResult += 1
+        //  eatPineappleWav.play()
+        //    squares[playerIndex].classList.remove('pineapple')
       } else if (squares[playerIndex].classList.contains('ghostSick')) {
         squares[playerIndex].classList.remove('ghostSick')
         playerEatingGhostIndex = playerIndex
         console.log('I ate you')
       }
-      score.innerText = scoreResult
 
       mazeArray[playerIndex] = 0
 
+      if(scoreResult===180){
+        resultGame.classList.add('winner')
+        clearInterval(timerGhostId)
+        clearInterval(timerGhostAway)
+        
+      }
+
+
+
       squares[playerIndex].classList.add('player')
 
-
-      if(scoreResult>=168)
-        resultGame.classList.add('winner')
     } else {
       if (keyVal === 37) {
         playerIndex = playerIndex + 1
@@ -460,9 +448,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
   startButton.addEventListener('click', () => {
+    console.log('start button clicked...')
     document.addEventListener('keydown', keyInputs)
     pacmanIntroMusic.pause()
-    clearInterval(introMusicTimer)
+    // clearInterval(introMusicTimer)
     timer()
     timerGhostId = setInterval(moveGhosts, 1000)
   })
