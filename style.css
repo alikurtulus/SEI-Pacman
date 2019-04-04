@@ -126,11 +126,6 @@ select{
 .maze div.player[data-direction="backward"] {
   transform: scaleX(-1);
 }
-.deathpacman{
-  height:10%;
-  width: 10%;
-  background-image: url('images/deathpacman.png');
-}
 
 
 .maze div.player[data-step="0"] {
@@ -267,4 +262,15 @@ select{
   width: 10%;
   background-image: url('images/ghostSick.png');
   background-size: cover;
+}
+.deathpacman{
+  height:10%;
+  width: 10%;
+  background-image: url('images/deathpacman.png');
+}
+.winnerText{
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  font-size:36px;
 }
