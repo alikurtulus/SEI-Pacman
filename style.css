@@ -3,10 +3,19 @@
 }
 
 header{
+  height:52px;
+  text-shadow: 4px 4px 4px red;
+  color:#f0f402;
+  font-size: 52px;
   text-align: center;
+
 }
 body{
-  background-color: black;
+  background-image:url('images/pacman_background.jpg');
+  
+  background-blend-mode: lighten;
+
+
 
   font-family: 'Orbitron', sans-serif;
 }
@@ -14,21 +23,22 @@ body{
 .container{
   width: 1200px;
   height: 750px;
-  border: 1px solid black;
+
   display: flex;
-  justify-content:space-around;
+  justify-content:space-between;
   margin: auto;
-  background-color: black;
+
 }
 .buttons{
+
   width: 200px;
-  height:100%;
+  height:23%;
   display:flex;
   flex-direction: column;
   margin:0 10px;
   align-items: center;
-  border: 1px solid white;
   text-align: center;
+
 }
 
 .startButton, .resetButton {
@@ -37,35 +47,40 @@ body{
 
 
 .startButton{
-  width: 150px;
+  text-shadow: 2px 2px 2px red;
+  width: 180px;
   height: 40px;
-  border: 2px solid green;
+  border: 3px solid #f47741;
   background-color: #97efeb;
   color:#f4a142;
-    margin:10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 26px;
+  margin:10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  border-radius: 6px;
 
 }
 
 .resetButton{
-  width: 150px;
+  text-shadow: 2px 2px 2px red;
+  width: 180px;
   height: 40px;
-  border: 2px solid green;
+  border: 3px solid #f47741;
+  border-radius: 6px;
   background-color: #97efeb;
-    color:#f4a142;
-    margin:10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-      font-size: 26px;
+  color:#f4a142;
+  margin:10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
 }
 .levelOfDifficulty{
   width: 150px;
   height: 45px;
-  border: 2px solid green;
+  border: 3px solid #f47741;
+  border-radius: 6px;
   background-color: #97efeb;
   display: flex;
   justify-content: center;
@@ -82,8 +97,6 @@ select{
 }
 .maze{
   align-items: center;
-
-
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
@@ -91,17 +104,15 @@ select{
   justify-content: center;
   max-height: 800px;
   max-width: 800px;
-
-
+  border: 3px solid #f47741;
+  border-radius: 6px;
 }
 
 .maze div{
   flex-grow: 1;
   width: calc(100% / 20);
    height: calc(100% / 20);
-
-
-
+   background-color: black;
 }
 .maze div.player[data-direction="forward"] {
   transform: scaleX(1);
@@ -172,8 +183,8 @@ select{
 
 .timeScore{
   width: 200px;
-  height:100%;
-  border:  1px solid white;
+  height:6.5%;
+ background-color: black;
   display: flex;
   flex-wrap: wrap;
   color:#f47741;
@@ -183,7 +194,8 @@ select{
 .time{
   width: 50%;
   height: 50px;
-  border:1px solid black;
+  border:3px solid #f47741;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -217,7 +229,8 @@ select{
 .score{
   width: 50%;
   height: 50px;
-  border:1px solid black;
+  border:3px solid #f47741;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;

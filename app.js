@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       squares[playerIndex].classList.add('player')
 
-    } else {
+    } else {   //When pacman tries to go to wall ,give last index before it goes to wall for all directions
       if (keyVal === 37) {
         playerIndex = playerIndex + 1
       } else if (keyVal === 38) {
@@ -373,6 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mazeArray[338] === 3)
       squares[338].classList.add('cherry')
   }
+  //Timer for game
   function timer() {
     clearInterval(timerId)
     timerId = setInterval(() => {
@@ -389,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 1000)
   }
-
+//This key inputs for pacman movements
   function keyInputs(e) {
     if (isGamePlay) {
       switch (e.keyCode) {
@@ -441,6 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return
 
   }
+  //Difficulties for game
   options.addEventListener('change', (e) => {
     if (e.target.value === 'Easy')
       speedGhosts = 1000
@@ -451,6 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   })
+  //Start the game
   startButton.addEventListener('click', () => {
     console.log('start button clicked...')
     document.addEventListener('keydown', keyInputs)
@@ -460,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     timerGhostId = setInterval(moveGhosts, speedGhosts)
     startButton.style.visibility = 'hidden'
   })
-
+// Reset button
   resetButton.addEventListener('click', () => {
     currentStep = 0
     ghostAwayCount = 8
@@ -491,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(timerId)
     clearInterval(timerGhostId)
 
-    startButton.style.visibility = 'visible'
+  
     clearInterval(timerGhostAway)
     timer()
     timerCheckScore = setInterval(updateScore, 60)
