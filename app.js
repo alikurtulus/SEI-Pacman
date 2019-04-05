@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let ghostStep2 = 0
   let ghostStep3 = 0
   const availableMoves = [-1, -width, 1, width]
+  
   let ghostAwayCount = 8
   let timerGhostAway = 0
   let timerGhostId = 0
@@ -494,7 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(timerId)
     clearInterval(timerGhostId)
 
-  
+
     clearInterval(timerGhostAway)
     timer()
     timerCheckScore = setInterval(updateScore, 60)
