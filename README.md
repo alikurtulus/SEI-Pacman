@@ -23,7 +23,7 @@ Vanilla Javascript Game
 
 _Screen shot_
 ![game-logo_42](https://user-images.githubusercontent.com/41147100/55614848-df4ad100-5785-11e9-9e96-0a7e26a210bb.png)
-![Beyoncé](https://media.giphy.com/media/RX7N03MEUafW8/giphy.gif)
+
 
 _Link to live site_
 ![SEI-Pacman](https://kopanarya.github.io/SEI-Pacman/)
@@ -34,16 +34,35 @@ _On May 22, 1980, the Pac-Man video game was released in Japan and by October of
 _Pac Man movements: ← ↑ → ↓ keys_
 
 ### Game Instructions
-1. _How the game works. Break the process down into steps. Add a screenshot for each step_
+![game1](https://user-images.githubusercontent.com/41147100/55617404-e674dd80-578b-11e9-8995-4dd2ed8a15c3.png)
+
+1. _The game is started by clicking on the "Start" button.After You click "Start" button."Start" button disappear.If you want to start to the game again .You need to click reset button.You can reset game  while you are playing game as well._
+
+![startGame](https://user-images.githubusercontent.com/41147100/55617745-b24dec80-578c-11e9-931c-03a53f86c575.png)
+
+2. _Ghosts and Pacman start to  move .When Pacman eats pineapples.You get one more point for your score.If you eat cherry,You get 5 points more and 5 seconds more_
+
+![PacmanEatsGhost](https://user-images.githubusercontent.com/41147100/55618154-bdede300-578d-11e9-9e56-345686e27a0a.png)
+
+3. _Pacman can  eat ghosts when they turn to blue._
+
+![GameOver](https://user-images.githubusercontent.com/41147100/55618847-694b6780-578f-11e9-82df-2f8f6b5d417d.png)  
+4. _If Ghosts eat Pacman Game is over._
+
+![Winner](https://user-images.githubusercontent.com/41147100/55620238-4a9aa000-5792-11e9-9d00-e81a114e45ea.png)
+
+5. _When The score is 180 ,You finish the game._
+
+
 
 ## Process
-_Describe the process of building the game. How did you get started? How did you manage your time? How would you do things next time?_
+_First I started to write pseudo code on the Trello .Then,I started to do  html things for the game.I tried to do my web page Semantic web page.Then,I gave some css for my web pages.Then,I started to do JavaScript.First,I created my maze and  added Pacman, ghosts, cherries, and pineapples.Then,I did Pacman movements and eating fruits.Then,I did Ghosts movements.I tried to do ghost following Pacman.Then,I did Pacman eats When Ghosts turn to blue .I spent my time with JavaScript mostly.I would do score board for scores next time._
 
 ### Challenges
-_Describe the biggest challenges. How did you overcome them? Did you decide to pivot because of time constraints? What did you learn from these problems?_
+_The hardest part is Ghosts following Pacman logically. It took time to understand ghosts behaviours.I was thinking this thing is Al .I needed to think  all possibilities a lot.I searched this things on google.Their behaviours were so simple.I thought simple for this issue.I tried to break down this problem to small pieces.And,I manage to solve this problem.I do not need to think complex for any problem .Think simple and break down this problem to small pieces._
 
 ### Wins
-_Describe the wins. What are you most proud of? What did this project help you to understand the most?_
+_I really enjoyed what I did .I am so proud of Ghost Following Pacman. This project helped me to understand time management about projects.First thing,Write pseudo.Second thing,Do some html and css to see every things properly.Third thing,Play hard for JavaScript.When JavaScript works properly.Give more time doing  css._
 
 ## Future features
-_If you were to revisit this project in the future what features would you add?_
+_I am going to do more CSS to make my web page beautiful.I am going to different mazes for game and try to do scoreboard._

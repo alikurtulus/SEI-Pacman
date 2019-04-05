@@ -12,7 +12,7 @@ header{
 }
 body{
   background-image:url('images/pacman_background.jpg');
-  
+
   background-blend-mode: lighten;
 
 
@@ -203,10 +203,14 @@ select{
 }
 .resultGame{
   width: 100%;
-  height: 60px;
-  font-size: 26px;
-  color: red;
+  height: 80px;
+  font-size: 36px;
+  color:#f47741;
   text-align: center;
+  border:3px solid #f47741;
+  border-radius: 6px;
+  background-color: black;
+
 }
 
 .cherry{
@@ -237,7 +241,7 @@ select{
 }
 .winner{
   width: 100%;
-  height: 180px;
+  height: 190px;
   color: red;
   text-align: center;
   background-image: url('images/winner.png');
@@ -298,7 +302,9 @@ select{
 }
 .winnerText{
   width: 100%;
-  height: 40px;
+  height: 50px;
   text-align: center;
   font-size:36px;
+  background-color: black;
+  border:3px solid #f47741;
 }

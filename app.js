@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let ghostStep2 = 0
   let ghostStep3 = 0
   const availableMoves = [-1, -width, 1, width]
-  
+
   let ghostAwayCount = 8
   let timerGhostAway = 0
   let timerGhostId = 0
@@ -268,6 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayResultWinnerAndScore() {
+    resultGame.innerText=''
     resultGame.classList.add('winner')
     clearInterval(timerGhostId)
     clearInterval(timerGhostAway)
@@ -332,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       mazeArray[playerIndex] = 0
       if (counterReset) {
-        if (scoreResult === 183){
+        if (scoreResult >= 183){
           displayResultWinnerAndScore()
           counterReset=false
         }
