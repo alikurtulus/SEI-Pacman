@@ -8,11 +8,12 @@ header{
   color:#f0f402;
   font-size: 52px;
   text-align: center;
+  margin-bottom: 18px;
 
 }
 body{
-  background-image:url('images/pacman_background.jpg');
-  
+  background-color: black;
+
   background-blend-mode: lighten;
 
 
@@ -182,19 +183,23 @@ select{
 
 
 .timeScore{
+
   width: 200px;
   height:6.5%;
- background-color: black;
+  color:#f4a142;
   display: flex;
   flex-wrap: wrap;
   color:#f47741;
   font-size: 26px;
   margin:0 10px;
+  text-shadow: 2px 2px 2px red;
+
+
 }
 .time{
   width: 50%;
   height: 50px;
-  border:3px solid #f47741;
+  border:1px solid #f47741;
   border-radius: 6px;
   display: flex;
   justify-content: center;
@@ -203,10 +208,15 @@ select{
 }
 .resultGame{
   width: 100%;
-  height: 60px;
-  font-size: 26px;
-  color: red;
+  height: 80px;
+  font-size: 36px;
   text-align: center;
+  text-shadow: 2px 2px 2px red;
+  border: 1px solid #f47741;
+
+  border-radius: 6px;
+
+
 }
 
 .cherry{
@@ -229,7 +239,7 @@ select{
 .score{
   width: 50%;
   height: 50px;
-  border:3px solid #f47741;
+  border:1px solid #f47741;
   border-radius: 6px;
   display: flex;
   justify-content: center;
@@ -237,14 +247,12 @@ select{
 }
 .winner{
   width: 100%;
-  height: 180px;
+  height: 190px;
   color: red;
   text-align: center;
   background-image: url('images/winner.png');
   background-size:cover;
   background-repeat: no-repeat;
-
-
 
 }
 
@@ -298,7 +306,11 @@ select{
 }
 .winnerText{
   width: 100%;
-  height: 40px;
+  height: 50px;
   text-align: center;
   font-size:36px;
+
+  border:1px solid #f47741;
+
+
 }
