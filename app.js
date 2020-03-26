@@ -207,7 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
       pacmanDeathVoice.play()
       squares[playerIndex].classList.remove('player')
       squares[playerIndex].classList.add('deathpacman')
-
       squares[playerIndex]
       isGamePlay = false
     }
@@ -472,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
     squares[playerIndex].classList.remove('player')
     playerIndex = 21
     speedGhosts = 1000
+    resultGame.innerText='Result'
     countIntroMusic = 10
     isGhostSick1 = false
     isGhostSick2 = false
@@ -494,8 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(timerCheckScore)
     clearInterval(timerId)
     clearInterval(timerGhostId)
-
-
     clearInterval(timerGhostAway)
     timer()
     timerCheckScore = setInterval(updateScore, 60)
