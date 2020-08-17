@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
+// Display Result and Winner and Score
   function displayResultWinnerAndScore() {
     resultGame.innerText=''
     resultGame.classList.add('winner')
