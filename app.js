@@ -35,7 +35,6 @@
   let ghostStep2 = 0
   let ghostStep3 = 0
   const availableMoves = [-1, -width, 1, width]
-
   let ghostAwayCount = 8
   let timerGhostAway = 0
   let timerGhostId = 0
@@ -71,7 +70,7 @@
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   ]
   // Create maze ,Maze has got way,wall,cherry
-  function createMaze() {
+const createMaze = () => {
     for (let i = 0; i < width * width; i++) {
       const square = document.createElement('DIV')
       squares.push(square)
@@ -82,7 +81,6 @@
       else if (mazeArray[i] === 3) square.classList.add('cherry')
     }
   }
-
   /*  function playIntroMusic() {
       pacmanIntroMusic.play()
       countIntroMusic--
@@ -90,12 +88,11 @@
         pacmanIntroMusic.pause()
         clearInterval(introMusicTimer)
       }
-
     }
     */
   //const introMusicTimer = setInterval(playIntroMusic, 1000)
- // Create ghosts,When it creates ghosts ,It checks places for creating ghosts
-  function createGhosts() {
+// Create ghosts,When it creates ghosts ,It checks places for creating ghosts
+const  createGhosts = () => {
     while (ghostCounter < 3) {
       const randGhost = parseInt(Math.floor(Math.random() * 399)) //Try to give random position for ghosts
       if (squares[randGhost].classList.contains('way') && !squares[randGhost].classList.contains('player') && !squares[randGhost].classList.contains('cherry') && randGhost !== 21) {
@@ -116,15 +113,25 @@
     ghostStep3 = ghostPositions[2]
   }
    // Create foods ,it checks places to create pineapple
-  function createFoods() {
+const  createFoods = () =>{
     console.log('hii')
     return squares.forEach(square => {
       if (square.classList.contains('way') && !square.classList.contains('player') && !square.classList.contains('ghost') && !square.classList.contains('ghost2') && !square.classList.contains('ghost3')) square.classList.add('pineapple')
 
     })
   }
+const createModal = () => {
+  const modalDiv = document.createElement('div')
+  const titleModal = document.createElement('h3')
+  const contentModal = document.createElement('div')
+
+  modalDiv.style.cssText="width:30vw;height:40vh;background-color:white;margin:auto;"
+  modalDiv.appendChild(titleModal)
+  modalDiv.appendChild(contentModal)
+
+}
 //Clear all pineapple on the maze
-  function clearFoods() {
+const clearFoods = () => {
     console.log('hii')
     return squares.forEach(square => {
       if (square.classList.contains('way') && !square.classList.contains('player') && !square.classList.contains('ghost') && !square.classList.contains('ghost2') && !square.classList.contains('ghost3')) square.classList.remove('pineapple')
@@ -135,7 +142,7 @@
   createGhosts()
   createFoods()
 //trying to calculate for each ghosts their next moves and find distances(between ghosts and pacman) for availableMove
-  function calculateDistanceAndPositionForGhost() {
+const calculateDistanceAndPositionForGhost = () => {
     realMoves = availableMoves.filter(availableMove => {
       return (!isGhostSick1) ? (!squares[ghostStep + availableMove].classList.contains('wall') && !squares[ghostStep + availableMove].classList.contains('ghost2') && !squares[ghostStep + availableMove].classList.contains('ghost3') && !squares[ghostStep + availableMove].classList.contains('ghostSick')) :
         null
@@ -165,13 +172,13 @@
     }
   }
 //Remove all ghost from maze
-  function removeGhosts() {
+const removeGhosts = () => {
     squares[ghostStep].classList.remove('ghost')
     squares[ghostStep2].classList.remove('ghost2')
     squares[ghostStep3].classList.remove('ghost3')
   }
 //Ghosts movements,find min distance between pacman and ghosts
-  function moveGhosts() {
+const moveGhosts = () => {
     console.log('movin')
     removeGhosts()
     calculateDistanceAndPositionForGhost()
@@ -207,8 +214,7 @@
       isGamePlay = false
     }
   }
-
-  function removeGhostSick() {
+  const  removeGhostSick = () => {
     squares[ghostStep].classList.remove('ghostSick')
     squares[ghostStep2].classList.remove('ghostSick2')
     squares[ghostStep3].classList.remove('ghostSick3')
@@ -260,8 +266,7 @@
       }
     }
   }
-
-  function displayResultWinnerAndScore() {
+const displayResultWinnerAndScore = ()=> {
     resultGame.innerText=''
     resultGame.classList.add('winner')
     clearInterval(timerGhostId)
@@ -271,7 +276,7 @@
     isGamePlay = false
   }
 //Updating score
-  function updateScore() {
+const updateScore = () => {
     if (squares[playerIndex].classList.contains('cherry')) {
       clearInterval(timerGhostId)
       isGhostSick = true
@@ -304,20 +309,19 @@
     if (mazeArray[playerIndex] === 0 && !squares[playerIndex].classList.contains('wall') || squares[playerIndex].classList.contains('cherry') || squares[playerIndex].classList.contains('pineapple') || squares[playerIndex].classList.contains('ghostSick')) {
 
       if (squares[playerIndex].classList.contains('ghostSick')) {
-
-        squares[playerIndex].classList.remove('ghostSick')
-        isGhostSick1 = true
-        console.log('I ate you')
+          squares[playerIndex].classList.remove('ghostSick')
+          isGhostSick1 = true
+          console.log('I ate you')
       }
       if (squares[playerIndex].classList.contains('ghostSick2')) {
-        squares[playerIndex].classList.remove('ghostSick2')
-        isGhostSick2 = true
-        console.log('I ate you')
+          squares[playerIndex].classList.remove('ghostSick2')
+          isGhostSick2 = true
+          console.log('I ate you')
       }
       if (squares[playerIndex].classList.contains('ghostSick3')) {
-        squares[playerIndex].classList.remove('ghostSick3')
-        isGhostSick3 = true
-        console.log('I ate you')
+          squares[playerIndex].classList.remove('ghostSick3')
+          isGhostSick3 = true
+          console.log('I ate you')
       }
       mazeArray[playerIndex] = 0
       if (counterReset) {
@@ -347,7 +351,7 @@
     // update the current step (for styling)
     squares[playerIndex].setAttribute('data-step', currentStep)
   }
-  function createCherries() {
+  const createCherries = () => {
     mazeArray[61] = 3
     mazeArray[78] = 3
     mazeArray[321] = 3
@@ -362,7 +366,7 @@
       squares[338].classList.add('cherry')
   }
   //Timer for game
-  function timer() {
+const timer = () => {
     clearInterval(timerId)
     timerId = setInterval(() => {
       timeResult--
@@ -378,7 +382,7 @@
     }, 1000)
   }
 //This key inputs for pacman movements
-  function keyInputs(e) {
+const keyInputs = (e) =>{
     if (isGamePlay) {
       switch (e.keyCode) {
         case 37:
@@ -479,6 +483,5 @@
     timer()
     timerCheckScore = setInterval(updateScore, 60)
     timerGhostId = setInterval(moveGhosts, speedGhosts)
-
   })
 
