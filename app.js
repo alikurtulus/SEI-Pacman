@@ -1,6 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Js Loaded')
 
+  console.log('Js Loaded')
   const startButton = document.querySelector('.startButton')
   const resetButton = document.querySelector('.resetButton')
   const options = document.querySelector('.options')
@@ -106,18 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     console.log(ghostPositions)
     while (ghostCount < 3) {
-
       if (ghostCount === 0) squares[ghostPositions[ghostCount]].classList.add('ghost')
       else if (ghostCount === 1) squares[ghostPositions[ghostCount]].classList.add('ghost2')
       else if (ghostCount === 2) squares[ghostPositions[ghostCount]].classList.add('ghost3')
-
       ghostCount++
     }
     //GhostSteps positons from ghostPositionArray
     ghostStep = ghostPositions[0]
     ghostStep2 = ghostPositions[1]
     ghostStep3 = ghostPositions[2]
-
   }
    // Create foods ,it checks places to create pineapple
   function createFoods() {
@@ -132,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('hii')
     return squares.forEach(square => {
       if (square.classList.contains('way') && !square.classList.contains('player') && !square.classList.contains('ghost') && !square.classList.contains('ghost2') && !square.classList.contains('ghost3')) square.classList.remove('pineapple')
-
     })
   }
   createMaze()
@@ -208,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
       pacmanDeathVoice.play()
       squares[playerIndex].classList.remove('player')
       squares[playerIndex].classList.add('deathpacman')
-
       squares[playerIndex]
       isGamePlay = false
     }
@@ -316,19 +310,13 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('I ate you')
       }
       if (squares[playerIndex].classList.contains('ghostSick2')) {
-
         squares[playerIndex].classList.remove('ghostSick2')
-        //clearInterval(ghostTimerSick2)
         isGhostSick2 = true
-        //  clearInterval(timerGhostAway)
         console.log('I ate you')
       }
       if (squares[playerIndex].classList.contains('ghostSick3')) {
-
         squares[playerIndex].classList.remove('ghostSick3')
-        //clearInterval(ghostTimerSick3)
         isGhostSick3 = true
-        //  clearInterval(timerGhostAway)
         console.log('I ate you')
       }
       mazeArray[playerIndex] = 0
@@ -337,12 +325,10 @@ document.addEventListener('DOMContentLoaded', () => {
           displayResultWinnerAndScore()
           counterReset=false
         }
-
       }
       if (scoreResult === 180)
         displayResultWinnerAndScore()
-
-      squares[playerIndex].classList.add('player')
+        squares[playerIndex].classList.add('player')
 
     } else {   //When pacman tries to go to wall ,give last index before it goes to wall for all directions
       if (keyVal === 37) {
@@ -381,7 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
     timerId = setInterval(() => {
       timeResult--
       time.innerText = timeResult
-
       if (timeResult === 0) {
         clearInterval(timerId)
         clearInterval(timerGhostId)
@@ -406,7 +391,6 @@ document.addEventListener('DOMContentLoaded', () => {
             move()
           }
           break
-
         case 38:
           // up
           keyVal = 38
@@ -417,7 +401,6 @@ document.addEventListener('DOMContentLoaded', () => {
             move()
           }
           break
-
         case 39:
           // right
           keyVal = 39
@@ -428,7 +411,6 @@ document.addEventListener('DOMContentLoaded', () => {
             move()
           }
           break
-
         case 40:
           // down
           keyVal = 40
@@ -452,8 +434,6 @@ document.addEventListener('DOMContentLoaded', () => {
       speedGhosts = 700
     else if (e.target.value === 'Hard')
       speedGhosts = 500
-
-
   })
   //Start the game
   startButton.addEventListener('click', () => {
@@ -495,12 +475,10 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(timerCheckScore)
     clearInterval(timerId)
     clearInterval(timerGhostId)
-
-
     clearInterval(timerGhostAway)
     timer()
     timerCheckScore = setInterval(updateScore, 60)
     timerGhostId = setInterval(moveGhosts, speedGhosts)
 
   })
-})
+
